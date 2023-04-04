@@ -11,15 +11,20 @@
             el.style.color='#'+Math.floor(Math.random()*16777215).toString(16);
         });
         /* This tells us that if the first line happens (i.e. the document is loaded), then it appends */
+
     </script>
     <style type="text/css">
         thead {background-color: aquamarine;}
         .person{color: #a200ff}
-        td {border: 1px solid rgb(130, 186, 175);}
+        td {border: 1px solid rgb(130, 186, 175); height:15px; text-align: center; padding-left: 10px; padding-right:10px}
         table { border-collapse: collapse; }
         #copyright {font-size: 10px;}
         h2 {
             text-shadow: 2px 4px 10px #a200ff;
+        }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
         }
         .spaced > div{
             margin-bottom: 10px;
@@ -27,22 +32,11 @@
             text-align: center;
         }
         .important h2 {
-            color: rgb(76, 0, 255)
+            color: rgb(76, 0, 255);
+            text-align: center;
         } /* This means that h2 needs to be nested in a class (namely div) for 
         the "important" to work */
-        .container{
-            display: flex;
-            gap: 10px;
-            flex-direction: row;
-            height:200px;
-        }
-        .container .item {
-            flex-grow: 1;
-            border: dashed 1px;
-            column-count: 3;
 
-            column-width: 150px;
-        }
         .logo {
             transform: rotate(0deg);
             transform-origin: 20ex 20ex;
@@ -53,35 +47,33 @@
                 transform: rotate(360deg);
                 transition: transform 3s;
             }
-        @media(max-width: 600px){
-            .wide-stuff{
-                display:none;
-            }
-            /* If screen width is less than 600 pixels, don't display anything */
-        }
     </style>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.5/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.5/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.5/dist/js/uikit-icons.min.js"></script>
 
     <title>First Webpage</title>
 </head>
-<body>
+<body style="margin:15px;padding:30px">
     <h1 class="person">Neula</h1>
-    <div class="spaced">
-        <div>About me: </div>
-        <div>I am <em>Neula</em></div>
-    </div>
+    I am <em>Neula</em>.<br>
 
+    <img src="neula_terrassa.jpg" width=400 alt="la meva gosseta">
     <div class="person">Una foto meva prenent el solelete.</div>
-    <img src="images/neula_terrassa.jpg" width=400 alt="la meva gosseta">
+
     <p> La Neula és la millor del món per les següents raons:</p>
     <ul>
         <li>És super guapa</li>
         <li>Es porta molt bé amb mi</li>
-        <li>Està al meu costat no importa el que passi</li>
+        <li>Està al meu costat passi el que passi</li>
     </ul>
     
     <div class="important"><h2>Animals casolans</h2></div>
 
-    <table>
+    <table class="center">
         <thead>
             <tr>
                 <th>Animal</th>
@@ -105,41 +97,52 @@
     </table>
     <br>
 
-    <div class="container wide-stuff">
-        <div class="item">
-            <img src="images/neula_boleta.jpg" width=250 alt="Neula boleta">
-        </div>
-        <div class="item">
-            <div class="logo">
-                <img src="images/iris_pota.jpeg" width=250 alt="Iris pota">
+    <div class="uk-container">
+        <div class="uk-grid-medium 
+                    uk-child-width-1-2@s 
+                    uk-child-width-1-3@m
+                    uk-child-width-1-4@l
+                    uk-text-center" uk-grid>
+
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top logo">
+                        <img src="neula_boleta.jpg" width=400 alt="Neula boleta">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">Neula</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    </div>
+                </div>
+            </div> 
+
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top logo">
+                        <img src="iris_pota.jpeg" width=400 alt="Iris pota">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">Iris</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    </div>
+                </div>
+            </div>        
+        
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top">
+                        <img src="montblanc_pipes.png" width=200 height=200 alt="Montblanc pipes">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">Montblanc</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="item">
-            <img src="images/montblanc_pipes.png" width=200 alt="Montblanc pipes">
-        </div>
     </div>
+
     <div id="copyright"> Aquesta pàgina no es pot copiar</div>
-
-<!-- 
-    .name allows to define a class style 
-    #name defines an identity
-    <div></div> doesn't have an identity, it's just something that puts things together.
-    CSS Inheritance: you can build clause hierarchies. e.g.
-    <html><head><style>
-    .redColor .yellowColor { color: orange;}
-    .yellowColor { color: yellow; }
-    .redColor { color: red; }
-    .boldFont {   font-weight: bold; }
-    </style></head><body>
-<div class="redColor secondClass">
-  <div class="yellowColor">Hello</div> 
-  <div class="boldFont">World</div>
-</div>
-<div class="yellowColor">WWF</div>
-</body></html>	
-
-
--->
 
 </body>
 </html>
